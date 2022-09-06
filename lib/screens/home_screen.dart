@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:store_api_app/consts/global_colors.dart';
 import 'package:store_api_app/widgets/app_bar_icons.dart';
+import 'package:store_api_app/widgets/sale_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,26 +48,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: searchController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                    hintText: 'Search',
-                    filled: true,
-                    fillColor: Theme.of(context).cardColor,
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide:
-                          BorderSide(color: Theme.of(context).cardColor),
+                  hintText: 'Search',
+                  filled: true,
+                  fillColor: Theme.of(context).cardColor,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Theme.of(context).cardColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                      width: 1,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(
-                        width: 1,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                    ),
-                    suffixIcon: Icon(
-                      IconlyLight.search,
-                      color: lightIconsColor,
-                    )),
+                  ),
+                  suffixIcon: Icon(
+                    IconlyLight.search,
+                    color: lightIconsColor,
+                  ),
+                ),
               ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: SaleWidget(),
             ),
           ],
         ),
