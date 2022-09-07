@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:store_api_app/consts/global_colors.dart';
 import 'package:store_api_app/widgets/app_bar_icons.dart';
+import 'package:store_api_app/widgets/feeds_widget.dart';
 import 'package:store_api_app/widgets/sale_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -70,17 +71,60 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.25,
-                child: Swiper(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return const SaleWidget();
-                  },
-                  pagination: const SwiperPagination(
-                    alignment: Alignment.bottomCenter,
-                    builder: DotSwiperPaginationBuilder(
-                        color: Colors.white, activeColor: Colors.red),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.25,
+                        child: Swiper(
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return const SaleWidget();
+                          },
+                          pagination: const SwiperPagination(
+                            alignment: Alignment.bottomCenter,
+                            builder: DotSwiperPaginationBuilder(
+                                color: Colors.white, activeColor: Colors.red),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Latest Products',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 18),
+                            ),
+                          ),
+                          const Spacer(),
+                          AppBarIcons(
+                              function: () {}, icon: IconlyBold.arrowRight2)
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 3,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 0.0,
+                                mainAxisSpacing: 0,
+                                childAspectRatio: 0.6),
+                        itemBuilder: (context, index) {
+                          return const FeedsWidget();
+                        },
+                      )
+                    ],
                   ),
                 ),
               ),
