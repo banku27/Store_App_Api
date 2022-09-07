@@ -1,4 +1,4 @@
-import 'package:store_api_app/model/categories_model.dart';
+import 'package:store_api_app/models/categories_model.dart';
 
 class ProductsModel {
   int? id;
@@ -25,5 +25,9 @@ class ProductsModel {
         ? CategoriesModel.fromJson(json['category'])
         : null;
     images = json['images'].cast<String>();
+  }
+
+  static List<ProductsModel> productsFromSnapshot(List productSnapshot) {
+    return productSnapshot.map((data) => ProductsModel.fromJson(data)).toList();
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:store_api_app/models/product_model.dart';
 import 'package:store_api_app/widgets/feeds_widget.dart';
 
 class FeedsScreen extends StatelessWidget {
-  const FeedsScreen({Key? key}) : super(key: key);
+  const FeedsScreen({Key? key, required this.productsList}) : super(key: key);
+  final List<ProductsModel> productsList;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class FeedsScreen extends StatelessWidget {
             mainAxisSpacing: 0,
             childAspectRatio: 0.6),
         itemBuilder: (context, index) {
-          return const FeedsWidget();
+          return FeedsWidget(
+            imageUrl: productsList[index].images![0],
+            title: productsList[index].title.toString(),
+          );
         },
       ),
     );
