@@ -6,8 +6,10 @@ import 'package:store_api_app/consts/global_colors.dart';
 import 'package:store_api_app/models/product_model.dart';
 import 'package:store_api_app/screens/categories_screen.dart';
 import 'package:store_api_app/screens/feeds_screen.dart';
+import 'package:store_api_app/screens/users_screen.dart';
 import 'package:store_api_app/services/api_handler.dart';
 import 'package:store_api_app/widgets/app_bar_icons.dart';
+import 'package:store_api_app/widgets/feeds_grid_widget.dart';
 import 'package:store_api_app/widgets/feeds_widget.dart';
 import 'package:store_api_app/widgets/sale_widget.dart';
 
@@ -60,7 +62,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             AppBarIcons(
-              function: () {},
+              function: () {
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      child: const UsersScreen(),
+                      type: PageTransitionType.fade),
+                );
+              },
               icon: IconlyBold.user3,
             ),
           ],
@@ -92,6 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: lightIconsColor,
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 18,
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -142,23 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: productsList.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 0.0,
-                                mainAxisSpacing: 0,
-                                childAspectRatio: 0.6),
-                        itemBuilder: (context, index) {
-                          return FeedsWidget(
-                            imageUrl: productsList[index].images![0],
-                            title: productsList[index].title.toString(),
-                          );
-                        },
-                      ),
+                      FeedsGridWidget(productsList: productsList),
                     ],
                   ),
                 ),
