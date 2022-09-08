@@ -24,6 +24,6 @@ class ApiHandler {
     //     'https://api.escuelajs.co/api/v1/products',
     //   ),
     // );
-    print('response ${jsonDecode(response.body)}');
+    // print('response ${jsonDecode(response.body)}');
   }
 }

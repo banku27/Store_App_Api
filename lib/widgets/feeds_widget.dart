@@ -85,7 +85,7 @@ class FeedsWidget extends StatelessWidget {
                 height: 10,
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   title,
                   overflow: TextOverflow.ellipsis,
